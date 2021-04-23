@@ -1,0 +1,108 @@
+Machine_name	vCPUs1	Memory_(GB)	Max_number_of_persistent_disks_(PDs)2	Max_total_PD_size_(TB)	Local_SSD	Maximum_egress_bandwidth_(Gbps)3
+e2-standard-2	2	8	128	257	No	4
+e2-standard-4	4	16	128	257	No	8
+e2-standard-8	8	32	128	257	No	16
+e2-standard-16	16	64	128	257	No	16
+e2-standard-32	32	128	128	257	No	16
+e2-highmem-2	2	16	128	257	No	4
+e2-highmem-4	4	32	128	257	No	8
+e2-highmem-8	8	64	128	257	No	16
+e2-highmem-16	16	128	128	257	No	16
+e2-highcpu-2	2	2	128	257	No	4
+e2-highcpu-4	4	4	128	257	No	8
+e2-highcpu-8	8	8	128	257	No	16
+e2-highcpu-16	16	16	128	257	No	16
+e2-highcpu-32	32	32	128	257	No	16
+n2-standard-2	2	8	128	257	Yes	10	n/a
+n2-standard-4	4	16	128	257	Yes	10	n/a
+n2-standard-8	8	32	128	257	Yes	16	n/a
+n2-standard-16	16	64	128	257	Yes	32	n/a
+n2-standard-32	32	128	128	257	Yes	32	50
+n2-standard-48	48	192	128	257	Yes	32	50
+n2-standard-64	64	256	128	257	Yes	32	75
+n2-standard-80	80	320	128	257	Yes	32	100
+n2-highmem-2	2	16	128	257	Yes	10	n/a
+n2-highmem-4	4	32	128	257	Yes	10	n/a
+n2-highmem-8	8	64	128	257	Yes	16	n/a
+n2-highmem-16	16	128	128	257	Yes	32	n/a
+n2-highmem-32	32	256	128	257	Yes	32	50
+n2-highmem-48	48	384	128	257	Yes	32	50
+n2-highmem-64	64	512	128	257	Yes	32	75
+n2-highmem-80	80	640	128	257	Yes	32	100
+n2-highcpu-2	2	2	128	257	Yes	10	n/a
+n2-highcpu-4	4	4	128	257	Yes	10	n/a
+n2-highcpu-8	8	8	128	257	Yes	16	n/a
+n2-highcpu-16	16	16	128	257	Yes	32	n/a
+n2-highcpu-32	32	32	128	257	Yes	32	50
+n2-highcpu-48	48	48	128	257	Yes	32	50
+n2-highcpu-64	64	64	128	257	Yes	32	75
+n2-highcpu-80	80	80	128	257	Yes	32	100
+n2d-standard-2	2	8	128	257	Yes	10
+n2d-standard-4	4	16	128	257	Yes	10
+n2d-standard-8	8	32	128	257	Yes	16
+n2d-standard-16	16	64	128	257	Yes	32
+n2d-standard-32	32	128	128	257	Yes	32
+n2d-standard-48	48	192	128	257	Yes	32
+n2d-standard-64	64	256	128	257	Yes	32
+n2d-standard-80	80	320	128	257	Yes	32
+n2d-standard-96	96	384	128	257	Yes	32
+n2d-standard-128	128	512	128	257	Yes	32
+n2d-standard-224	224	896	128	257	Yes	32
+n2d-highmem-2	2	16	128	257	Yes	10
+n2d-highmem-4	4	32	128	257	Yes	10
+n2d-highmem-8	8	64	128	257	Yes	16
+n2d-highmem-16	16	128	128	257	Yes	32
+n2d-highmem-32	32	256	128	257	Yes	32
+n2d-highmem-48	48	384	128	257	Yes	32
+n2d-highmem-64	64	512	128	257	Yes	32
+n2d-highmem-80	80	640	128	257	Yes	32
+n2d-highmem-96	96	768	128	257	Yes	32
+n2d-highcpu-2	2	2	128	257	Yes	10
+n2d-highcpu-4	4	4	128	257	Yes	10
+n2d-highcpu-8	8	8	128	257	Yes	16
+n2d-highcpu-16	16	16	128	257	Yes	32
+n2d-highcpu-32	32	32	128	257	Yes	32
+n2d-highcpu-48	48	48	128	257	Yes	32
+n2d-highcpu-64	64	64	128	257	Yes	32
+n2d-highcpu-80	80	80	128	257	Yes	32
+n2d-highcpu-96	96	96	128	257	Yes	32
+n2d-highcpu-128	128	128	128	257	Yes	32
+n2d-highcpu-224	224	224	128	257	Yes	32
+n1-standard-1	1	3.75	128	257	Yes	2
+n1-standard-2	2	7.50	128	257	Yes	10
+n1-standard-4	4	15	128	257	Yes	10
+n1-standard-8	8	30	128	257	Yes	16
+n1-standard-16	16	60	128	257	Yes	324
+n1-standard-32	32	120	128	257	Yes	324
+n1-standard-64	64	240	128	257	Yes	324
+n1-standard-96	96	360	128	257	Yes	324
+n1-highmem-2	2	13	128	257	Yes	10
+n1-highmem-4	4	26	128	257	Yes	10
+n1-highmem-8	8	52	128	257	Yes	16
+n1-highmem-16	16	104	128	257	Yes	324
+n1-highmem-32	32	208	128	257	Yes	324
+n1-highmem-64	64	416	128	257	Yes	324
+n1-highmem-96	96	624	128	257	Yes	324
+n1-highcpu-2	2	1.80	128	257	Yes	10
+n1-highcpu-4	4	3.60	128	257	Yes	10
+n1-highcpu-8	8	7.20	128	257	Yes	16
+n1-highcpu-16	16	14.4	128	257	Yes	324
+n1-highcpu-32	32	28.8	128	257	Yes	324
+n1-highcpu-64	64	57.6	128	257	Yes	324
+n1-highcpu-96	96	86.4	128	257	Yes	324
+c2-standard-4	4	16	128	257	Yes	10	n/a
+c2-standard-8	8	32	128	257	Yes	16	n/a
+c2-standard-16	16	64	128	257	Yes	32	n/a
+c2-standard-30	30	120	128	257	Yes	32	50
+c2-standard-60	60	240	128	257	Yes	32	100
+m2-ultramem-2084	208	5888	128	257	No	325
+m2-ultramem-4164	416	11776	128	257	No	325
+m2-megamem-4164	416	5888	128	257	No	325
+m1-ultramem-40	40	961	128	257	No	32
+m1-ultramem-80	80	1922	128	257	No	32
+m1-ultramem-160	160	3844	128	257	No	32
+a2-highgpu-1g	12	85	128	257	Yes	24
+a2-highgpu-2g	24	170	128	257	Yes	32
+a2-highgpu-4g	48	340	128	257	Yes	50
+a2-highgpu-8g	96	680	128	257	Yes	100
+a2-megagpu-16g	96	1360	128	257	Yes	100
