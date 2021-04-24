@@ -1,0 +1,27 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{598report}
+\author{yiransi }
+\date{April 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{Hide the cost of transient node fault tolerance}
+Cloud providers have mechanisms to send warnings before transient instances are revoked. Our design is based on AWS' revoking mechanism. AWS sends a 2 minute warning before a transient instance is reclaimed.\\
+We can make use of this by having the controller ask the cloud provider for a new node, then copy all replicas of the about-to-be-revoked node to the new node upon receiving the 2 minute warning. Given that creating migrating replicas can usually be done within the 2 minutes time frame, we could hide the 2-minute cost of allocating a new node and migrating all replicates. Then the system should gracefully shutdown the about-to-be-revoked node. By the time a transient node is revoked, we have a new transient node fully operational and ready to serve requests. This way, we shall observe little to no decrease in overall throughput due to spot instances being revoked.
+
+\section{When a transient instance is not available, select instances similar to it}
+To ensure that the system will always have some transient instances available upon initialization, we need to diversify the instance types when needed. We could collect instance data including number of cpu, memory limit, maximum bandwidth, SSD, etc. Then we could write a script that would automatically select instances that are similar to the about-to-be-revoked instances in terms of cpu capacity, memory, and cost or with customed function. Further more, we could write a script that would automatically generate a configuration file with the selected instance types. For example, if m5.medium is not available on AWS, we could have instances of similar capacity to choose from, such as m4.medium, t4.medium. Thus it is unlikely that we will run out of spot instances when initializing the system. \\
+We manually collect instances metadata from different cloud providers and save all instances data from each cloud providers in separate files. Then we write a python program that reads in the instance data file, parse the instances data and store those data in memory.\\
+The script would take a instance name as well as a threshold. We started with the following logic to determine if two instances are similar:  if the ratios of the number of cpu, memory capacity, and bandwidth of the two system is less than or equal to $threshold$, then the two instances are said to be similar. 
+
+\section{Increase the number of worker nodes}
+Another way to increase the system throughput is to increase the number of worker nodes. Because transient nodes are so cheap, even with far more worker nodes running on transient instances, the cost is still far less than the baseline system which initiates all nodes on non-transient instances. In addition to lower the cost and higher the throughput, a system with more nodes in it should be more resilient to catastrophic failure.
+
+\section{Head nodes on non-transient instances and worker nodes on transient instances}
+Aside from the above techniques, one thing worth noting is that we would have the head nodes, i.e. the nodes that the system controller runs on, running on non-transient nodes whereas the worker nodes, i.e. the nodes that have replicas and serve requests, running on transient nodes. This is because the cost of recovering a head node failure would be much more expensive than recovering a worker node, as the head node contains much more system metadata and resource information.
+ 
+\end{document}
