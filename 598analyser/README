@@ -1,0 +1,13 @@
+1. make analyser.py executable 
+chmod +x analyser.py 
+
+2. command && options 
+
+print helper msg: 
+./analyser.py -h 
+
+find instance using thredshold: 
+./analyser.py [thredshold] [instancename] 
+
+find instance using boundary: 
+TODO 

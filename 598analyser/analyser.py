@@ -101,7 +101,7 @@ class Analyser:
 
 if __name__ == "__main__":
     if "-h" in sys.argv or len(sys.argv) < 3: 
-        print("HELP: ./analysis [thredshold] [instancename]")
+        print("HELP: ./analyser.py [thredshold] [instancename]")
     else :
         ins_name = sys.argv[1]
         thredshold = float(sys.argv[2])
