@@ -92,7 +92,7 @@ class Analyzer:
         for instance in cheapest_unique_k:
             yaml = ''
             i = 0
-            with open('template.yaml', 'r') as template_f:
+            with open('{}_template.yaml'.format(self.provider), 'r') as template_f:
                 for line in template_f:
                     if '*' in line:
                         line = line.replace('*', str(operator.attrgetter(attr[i])(instance)))
@@ -120,7 +120,6 @@ class Analyzer:
                     trasient_price = float(row[36].split()[0][1:])
                     instance = Instance(name, cpu, mem, bandwidth, od_price, trasient_price)
                     self.instances[name] = instance
-                    # instance.printStatus()
                 except: 
                     continue
 
