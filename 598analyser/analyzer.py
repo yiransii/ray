@@ -61,12 +61,20 @@ class Analyzer:
     def find_cheapest_unique(self, similar_instances):
         group_by_type = dict()
         cheapest_unique = []
-        for instance in similar_instances:
-            instance_type = instance.name.split('-')
-            instance_type = instance_type[0] + instance_type[1]
-            if instance_type not in group_by_type:
-                group_by_type[instance_type] = []
-            group_by_type[instance_type].append(instance)
+        if self.provider == "gcp":
+            for instance in similar_instances:
+                instance_type = instance.name.split('-')
+                instance_type = instance_type[0] + instance_type[1]
+                if instance_type not in group_by_type:
+                    group_by_type[instance_type] = []
+                group_by_type[instance_type].append(instance)
+        elif self.provider == "aws":
+            for instance in similar_instances:
+                instance_type = instance.name.split('.')
+                instance_type = instance_type[1]
+                if instance_type not in group_by_type:
+                    group_by_type[instance_type] = []
+                group_by_type[instance_type].append(instance)
         for instance_type in group_by_type:
             lowest_price = float('inf')
             cheapest_instance = None
@@ -145,6 +153,7 @@ if __name__ == "__main__":
         
     a = Analyzer('{}_data.txt'.format(provider), provider) 
     similar = a.find_similar_ins(cpu_lbound, mem_lbound)
+
     cheapest_unique = a.find_cheapest_unique(similar)
     cheapest_unique.sort(key=operator.attrgetter('transient_price'))
     cheapest_unique_k = [instance for instance in cheapest_unique][:diversity_score]
