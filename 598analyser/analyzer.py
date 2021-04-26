@@ -3,11 +3,12 @@
 import sys
 import argparse
 import operator
+import csv
 
-FILENAME = "gcp_data.txt"
-PROVIDER = "gcp"
+# FILENAME = "gcp_data.txt"
+# PROVIDER = "gcp"
 
-class GCPInstance: 
+class Instance: 
     def __init__(self, name, cpu, mem, bandwidth, od_price, transient_price):
         self.name = name
         self.cpu = cpu 
@@ -44,7 +45,7 @@ class Analyzer:
         f.readline()
         for line in f: 
             line = line.split()
-            instance = GCPInstance(line[0], int(line[1]), float(line[2]), float(line[6]), float(line[7][1:]), float(line[8][1:]))
+            instance = Instance(line[0], int(line[1]), float(line[2]), float(line[6]), float(line[7][1:]), float(line[8][1:]))
             self.instances[line[0]] = instance
         f.close()
 
@@ -94,12 +95,35 @@ class Analyzer:
 
 
     def parse_instance_data_aws(self):
-        #TODO 
-        return ""
+        fileds = []
+        rows = []
+        with open("aws_data.csv", 'r') as f:
+            csvreader = csv.reader(f)
+            fields = next(csvreader)
+        
+            for row in csvreader:
+                rows.append(row)
+                try: 
+                    name = row[1]
+                    cpu = int(row[4].split()[0])
+                    mem = float(row[2].split()[0])
+                    bandwidth = float(row[21].split()[2])
+                    od_price = float(row[35].split()[0][1:])
+                    trasient_price = float(row[36].split()[0][1:])
+                    instance = Instance(name, cpu, mem, bandwidth, od_price, trasient_price)
+                    self.instances[name] = instance
+                    # instance.printStatus()
+                except: 
+                    continue
 
-    def analysis_aws(self, ins_name, th):
-        #TODO 
-        return ""
+    def analysis_aws(self, cpu_lbound, mem_lbound):
+        ans = []
+        for name in self.instances:
+            ins = self.instances[name]
+            if self.is_in_bounds(ins, cpu_lbound, mem_lbound):
+                #ins.printStatus()
+                ans.append(ins)
+        return ans  
 
     def is_in_bounds(self, ins, cpu_lbound, mem_lbound):
         return cpu_lbound <= ins.cpu and mem_lbound <= ins.mem
